@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">QuestStartUp</string>
+    <string name="startButtonText">Start</string>
+    <string name="target_package_textview_text">Target Package</string>
+</resources>
