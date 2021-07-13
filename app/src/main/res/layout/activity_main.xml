@@ -29,8 +29,9 @@
 
         <TextView
             android:id="@+id/tv_package"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:padding="15dp"
             android:textAlignment="center" />
 
@@ -40,7 +41,21 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:padding="15dp"
-            android:text="@string/startButtonText"
+            android:text="@string/start_button_text"
+            android:textAlignment="center" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:padding="15dp"
+            android:text="@string/apply_button_text"
             android:textAlignment="center" />
 
     </LinearLayout>
