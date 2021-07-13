@@ -1,28 +1,32 @@
 package com.tektonspace.queststartup;
 
-import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
-import androidx.annotation.RequiresApi;
 
 class PackageParser {
 
+    private String filePath = "";
     private final String jsonFileName = "packagename.json";
     private final String packageHeaderName = "package";
+
+    public PackageParser(String filePath)
+    {
+        this.filePath = filePath;
+    }
 
     public String getPackageName() {
         try {
             Log.v("StartUpTag", "Read Package Name");
-            File file = new File(Environment.getExternalStorageDirectory(), jsonFileName);
+            File file = new File(filePath, jsonFileName);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -44,5 +48,29 @@ class PackageParser {
         }
 
         return "";
+    }
+
+    public void SetPackageName(String packageName)
+    {
+        try {
+            Log.v("StartUpTag", "Read Package Name");
+
+            File file = new File(filePath, jsonFileName);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(packageHeaderName, packageName);
+
+            bufferedWriter.write(jsonObject.toString());
+
+            bufferedWriter.flush();
+            bufferedWriter.close();
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.v("StartUpTag", "Write Package Name ; " + e.getMessage());
+        }
+
     }
 }
